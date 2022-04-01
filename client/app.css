@@ -13,6 +13,11 @@
   height: 100vh;
 }
 
+#map {
+  width: 300px;
+  height: 400px;
+}
+
 .container {
   display: flex;
   width: 100%;

@@ -38,6 +38,7 @@
     "client:watch": "cd client && yarn watch"
   },
   "dependencies": {
+    "@googlemaps/react-wrapper": "^1.1.29",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/platform-express": "^8.0.0",

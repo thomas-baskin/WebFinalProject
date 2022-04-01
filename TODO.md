@@ -20,6 +20,7 @@ Here are some notes from the assignment description:
     3. Basic UI design
 
 - [x] Have the x, y coordinates display on the client's webpage. This'll show that we have the geolocation API working.
-    - [ ] Do the 
+    - [ ] Figure out how to calculate an x foot radius around a given x/y coordinate.
+    - [ ] Create function which returns true or false to see if the chatroom is within the given radius.
     - [ ] Add a latitude and longitude to the chatroom model.
 - [ ] First task is to add a location to a chat room in the model. What will this take? Figure out the best way to store a geolocation in a model.

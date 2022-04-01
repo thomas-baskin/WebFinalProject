@@ -57,16 +57,6 @@ export const ChatRoom = () => {
         <Button onClick={() => sendMessage(contents, user)}>Send</Button>
         <Button onClick={() => geolocation()}>Geolocate</Button>
       </div>
-      {/* <div>
-        <script
-          async
-          defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJyBEm51-6F136X-7LHt3P6mzloabuTQ&callback=initMap"
-        ></script>
-        <Map google={this.props.google} zoom={14} style={mapStyles} initialCenter={{ lat: lat, lng: lng }}>
-          <Marker onClick={this.onMarkerClick} name={'This is test name'} />
-        </Map>
-      </div> */}
     </div>
   );
 };
