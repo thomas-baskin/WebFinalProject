@@ -27,6 +27,24 @@ export const ChatRoom = () => {
 
   if (loading) return 'Loading...';
 
+  //Thank you Pluralsight for your tutorial.
+  // componentDidMount()
+  // {
+  //   navigator.geolocation.getCurrentPosition(function(position){
+  //     console.log("Latitude is :", position.coords.latitude);
+  //     console.log("Longitude is :", position.coords.longitude);
+  //   });
+  // }
+
+  async function geolocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      console.log('Latitude is :', position.coords.latitude);
+      console.log('Longitude is :', position.coords.longitude);
+    });
+  }
+
   return (
     <div className="chat-container">
       <div>
@@ -37,7 +55,20 @@ export const ChatRoom = () => {
       <div>
         <input type="text" value={contents} onChange={(e) => setContents(e.target.value)} />
         <Button onClick={() => sendMessage(contents, user)}>Send</Button>
+        <Button onClick={() => geolocation()}>Geolocate</Button>
       </div>
+      {/* <div>
+        <script
+          async
+          defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJyBEm51-6F136X-7LHt3P6mzloabuTQ&callback=initMap"
+        ></script>
+        <Map google={this.props.google} zoom={14} style={mapStyles} initialCenter={{ lat: lat, lng: lng }}>
+          <Marker onClick={this.onMarkerClick} name={'This is test name'} />
+        </Map>
+      </div> */}
     </div>
   );
 };
+
+//apiKey: 'AIzaSyCEJyBEm51-6F136X-7LHt3P6mzloabuTQ',
