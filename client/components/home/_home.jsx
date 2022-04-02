@@ -101,9 +101,13 @@ export const Home = () => {
       <Rooms>
         {chatRooms.map((room) => {
           return (
-            <Room key={room.id} to={`chat_rooms/${room.id}`}>
-              {room.name}
-            </Room>
+            <Room
+              key={room.id}
+              name={room.name}
+              lat={room.latitude}
+              lng={room.longitude}
+              to={`chat_rooms/${room.id}`}
+            ></Room>
           );
         })}
         <Room action={() => setIsOpen(true)}>+</Room>
