@@ -7,6 +7,11 @@ export const NewRoomModal = ({ createRoom, closeModal }) => {
   const [name, setName] = useState('');
   const [lat, setLat] = useState([]);
   const [lng, setLng] = useState([]);
+
+  //console.log('closemOdal: ', closeModal);
+
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
   // const [found, setFound] = useState(false);
   // setLat(0); // Default
   // setLng(0); //Default
@@ -33,7 +38,7 @@ export const NewRoomModal = ({ createRoom, closeModal }) => {
 
   return (
     <>
-      <div className="overlay" onClick={closeModal} />
+      <div className="overlay" onClick={() => closeModal()} />
       <div className="modal-container">
         <div className="modal">
           <span className="title">Create New Chat Room</span>
@@ -42,7 +47,7 @@ export const NewRoomModal = ({ createRoom, closeModal }) => {
           <p>Latitude: {lat}</p>
           {/* <input type="number" value={lat} onChange={(e) => setLat(e.target.value)} /> */}
           <div className="button-container">
-            <Button onClick={closeModal}>Close</Button>
+            <Button onClick={() => closeModal()}>Close</Button>
             <Button onClick={() => createRoom(name, lat, lng)}>Create</Button>
           </div>
         </div>

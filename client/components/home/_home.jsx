@@ -43,6 +43,10 @@ export const Home = () => {
     return <div>Loading...</div>;
   }
 
+  // function hide_overlay() {
+  //   ReactDOM.unmountComponentAtNode(document.getElementById('root'));
+  // }
+
   // const MINUTE_IN_MS = 60000;
 
   // useEffect(() => {
@@ -82,6 +86,11 @@ export const Home = () => {
     const { chatRoom } = await api.post('/chat_rooms', { name, lat, lng });
     setChatRooms([...chatRooms, chatRoom]);
   };
+
+  const closeModal = async () => {
+    setIsOpen(false);
+    setChatRooms([...chatRooms]);
+  };
   // const { chatRooms } = await api.get('/chat_rooms');
   // import { Wrapper, Status } from "@googlemaps/react-wrapper";
   // const render = (status: Status) => {
@@ -105,7 +114,7 @@ export const Home = () => {
           <Route path="/*" element={<div>Select a room to get started</div>} />
         </Routes>
       </div>
-      {isOpen ? <NewRoomModal createRoom={createRoom} /> : null}
+      {isOpen ? <NewRoomModal createRoom={createRoom} closeModal={closeModal} /> : null}
       {/* <script
         async
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJyBEm51-6F136X-7LHt3P6mzloabuTQ&callback=initMap"
