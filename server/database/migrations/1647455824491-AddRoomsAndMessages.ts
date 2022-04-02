@@ -21,6 +21,14 @@ export class AddRoomsAndMessages1647455824491 implements MigrationInterface {
             type: 'text',
             isUnique: true,
           },
+          {
+            name: 'latitude',
+            type: 'double precision',
+          },
+          {
+            name: 'longitude',
+            type: 'double precision',
+          },
         ],
       }),
     );

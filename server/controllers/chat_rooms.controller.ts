@@ -5,6 +5,8 @@ import * as crypto from 'crypto';
 
 class ChatRoomBody {
   name: string;
+  lng: number;
+  lat: number;
 }
 
 @Controller()
@@ -28,6 +30,8 @@ export class ChatRoomsController {
     let chatRoom = new ChatRoom();
     chatRoom.name = body.name;
     chatRoom.roomkey = crypto.randomBytes(8).toString('hex');
+    chatRoom.latitude = body.lat;
+    chatRoom.longitude = body.lng;
     chatRoom = await this.chatRoomsService.create(chatRoom);
     return { chatRoom };
   }

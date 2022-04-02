@@ -17,6 +17,8 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [lat, setLat] = useState([]);
+  const [lng, setLng] = useState([]);
   useEffect(async () => {
     const res = await api.get('/users/me');
     const { chatRooms } = await api.get('/chat_rooms');
@@ -26,6 +28,11 @@ export const Home = () => {
     //     setChatRooms([...chatRooms, chatRoom]);
     //   }
     // });
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //   setLat(position.coords.latitude);
+    //   setLng(position.coords.longitude);
+    // });
+    geolocation();
     console.log(chatRooms);
     setChatRooms(chatRooms);
     setUser(res.user);
@@ -36,9 +43,43 @@ export const Home = () => {
     return <div>Loading...</div>;
   }
 
-  const createRoom = async (name) => {
+  // const MINUTE_IN_MS = 60000;
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     geolocation();
+  //   }, MINUTE_IN_MS);
+
+  //   return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
+  // }, []);
+
+  async function geolocationlog() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log('Latitude is :', position.coords.latitude);
+      console.log('Longitude is :', position.coords.longitude);
+      //return { lat, lng };
+    });
+  }
+
+  async function geolocation() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      const lati = position.coords.latitude;
+      const lngi = position.coords.longitude;
+      setLat(lati);
+      setLng(lngi);
+      console.log('Latitude is :', position.coords.latitude);
+      console.log('Longitude is :', position.coords.longitude);
+      //return { lat, lng };
+    });
+  }
+
+  // const latlng = geolocation();
+  // const lat = latlng.lat;
+  // const lng = latlng.lng;
+
+  const createRoom = async (name, lat, lng) => {
     setIsOpen(false);
-    const { chatRoom } = await api.post('/chat_rooms', { name });
+    const { chatRoom } = await api.post('/chat_rooms', { name, lat, lng });
     setChatRooms([...chatRooms, chatRoom]);
   };
   // const { chatRooms } = await api.get('/chat_rooms');
@@ -48,7 +89,6 @@ export const Home = () => {
 
   return (
     <div className="container">
-      {/* <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.14.1/build/ol.js"></script> */}
       <Rooms>
         {chatRooms.map((room) => {
           return (
