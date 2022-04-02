@@ -18,6 +18,63 @@
   height: 400px;
 }
 
+.chatdiv {
+  width: 100%;
+}
+
+.chatbar {
+  display: flex;
+  /* position: absolute; */
+  bottom: 0;
+  left: 16px;
+  border: 2px solid rgb(145, 103, 103);
+  padding-left: 3px;
+  border-radius: 4px;
+  width: 100%;
+  /* background-color: solid rgb(203, 226, 237); */
+  /* background: transparent; */
+  /* border: 1px solid rgb(220, 244, 255); */
+}
+
+.message-content {
+  padding-left: 5px;
+  font-size: large;
+}
+
+input[type=text]:focus {
+  background-color: lightblue;
+}
+
+.message {
+  border-spacing: 3px;
+  border: 1px solid rgb(112, 112, 112);
+  border-radius: 5px;
+  background-color: rgb(247, 253, 255);
+}
+
+.user-name {
+  padding-left: 5px;
+  font-size: medium;
+  border: 1px blue;
+}
+
+/* .user-name {
+  display: flex;
+  width: 100%;
+} */
+
+.chat-window {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.chat-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
 .container {
   display: flex;
   width: 100%;
