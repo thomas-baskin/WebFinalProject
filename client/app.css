@@ -107,6 +107,19 @@ input[type=text]:focus {
   font-size: 16px;
 }
 
+.updateBtn {
+  background-color: var(--primary-color);
+  width: 96px;
+  height: 96px;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
 .overlay {
   position: fixed;
   top: 0;

@@ -74,7 +74,7 @@ export const ChatRoom = () => {
         >
           Send
         </Button>
-        <Button onClick={() => geolocation()}>Geolocate</Button>
+        {/* <Button onClick={() => geolocation()}>Update Geolocation</Button> */}
       </div>
     </div>
   );
