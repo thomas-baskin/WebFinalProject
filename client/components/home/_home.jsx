@@ -45,25 +45,10 @@ export const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [lat, setLat] = useState([]);
   const [lng, setLng] = useState([]);
-  const [latlngValidation, setLatLngValidation] = useState(false);
   useEffect(async () => {
     const res = await api.get('/users/me');
     const { chatRooms } = await api.get('/chat_rooms');
     await geolocation();
-    // console.log('geolocation found');
-
-    // const rooms = chatRooms.filter([chatRoom])
-
-    // const [state, setState] = useState(0);
-    // useEffect(() => {
-    //   console.log(state);
-    // }, [state]);
-    // return (
-    //   <button onClick={() => setState((prev) => prev + 1)}>
-    //     {state}
-    //     increment
-    //   </button>
-    // );
 
     await chatRooms.forEach((chatRoom) => {
       const chatRoomsList = [];
@@ -78,18 +63,12 @@ export const Home = () => {
       if (isCloseEnough(chatRoom.latitude, chatRoom.longitude, { lat }.lat, { lng }.lng, 1)) {
         // 0.1 km is about 330 feet
         console.log('Close Enough: True');
-        // setChatRooms([...chatRooms, chatRoom]);
         chatRoomsList.push(chatRoom);
       }
       setChatRooms(chatRoomsList);
     });
 
-    // navigator.geolocation.getCurrentPosition(function (position) {
-    //   setLat(position.coords.latitude);
-    //   setLng(position.coords.longitude);
-    // });
     console.log(chatRooms);
-    // setChatRooms(chatRooms);
     setUser(res.user);
     setLoading(false);
   }, [lat, lng]);
@@ -98,25 +77,10 @@ export const Home = () => {
     return <div>Loading...</div>;
   }
 
-  // function hide_overlay() {
-  //   ReactDOM.unmountComponentAtNode(document.getElementById('root'));
-  // }
-
-  // const MINUTE_IN_MS = 60000;
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     geolocation();
-  //   }, MINUTE_IN_MS);
-
-  //   return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
-  // }, []);
-
   async function geolocationlog() {
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log('Latitude is :', position.coords.latitude);
       console.log('Longitude is :', position.coords.longitude);
-      //return { lat, lng };
     });
   }
 
@@ -126,99 +90,8 @@ export const Home = () => {
       const lngi = position.coords.longitude;
       setLat(lati);
       setLng(lngi);
-      // console.log('Latitude is :', position.coords.latitude);
-      // console.log('Longitude is :', position.coords.longitude);
-      //return { lat, lng };
     });
   }
-
-  // useEffect(() => {
-  //   // action on update of lat
-  //   updateLocation();
-  // }, [lat]);
-
-  // function updateLocation2() {
-  //   if (this.lat === 'undefined') {
-  //     setLatLngValidation(true);
-  //   } else {
-  //     setLatLngValidation(false);
-  //   }
-  // }
-
-  // const updateLocation = async () => {
-  //   const res = await api.get('/users/me');
-  //   const { chatRooms } = await api.get('/chat_rooms');
-  //   // const result = await geolocation();
-  //   await console.log(this.lat);
-  //   await console.log(this.lng);
-  //   // chatRoomsList = [];
-  //   await updateRooms(chatRooms, this.lat, this.lng);
-  // chatRooms.forEach((chatRoom) => {
-  //   console.log('distance in km: ', getDistanceFromLatLonInKm(chatRoom.latitude, chatRoom.longitude, lat, lng));
-  //   console.log('chatRoom.latitude: ', chatRoom.latitude);
-  //   console.log('lat: ', this.lat);
-  //   if (isCloseEnough(chatRoom.latitude, chatRoom.longitude, this.lat, this.lng, 0.001)) {
-  //     // 0.1 km is about 330 feet
-  //     console.log('Close Enough: True');
-  //     chatRoomsList.append(chatRoom);
-  //     setChatRooms([...chatRooms, chatRoom]);
-  //   }
-  //   // console.log(chatRoomsList);
-  //   // setChatRooms(chatRoomsList);
-  // });
-  // setUser(res.user);
-  // setLoading(false);
-  // do something else here after firstFunction completes
-  // };
-
-  // const updateRooms = async (chatRooms, latit, longit) => {
-  //   await chatRooms.forEach((chatRoom) => {
-  //     console.log('distance in km: ', getDistanceFromLatLonInKm(chatRoom.latitude, chatRoom.longitude, latit, longit));
-  //     console.log('chatRoom.latitude: ', chatRoom.latitude);
-  //     console.log('lat: ', latit);
-  //     if (isCloseEnough(chatRoom.latitude, chatRoom.longitude, latit, longit, 0.001)) {
-  //       // 0.1 km is about 330 feet
-  //       console.log('Close Enough: True');
-  //       // chatRoomsList.append(chatRoom);
-  //       setChatRooms([...chatRooms, chatRoom]);
-  //     }
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   if (!latlngValidation) {
-  //     updateLocation();
-  //   }
-  // }, [latlngValidation]);
-
-  // async function updateLocation() {
-  // const res = await api.get('/users/me');
-  // const { chatRooms } = await api.get('/chat_rooms');
-  // await geolocation();
-  // console.log(this.lat);
-  // console.log(this.lng);
-  // chatRoomsList = [];
-  // await chatRooms.forEach((chatRoom) => {
-  //   console.log('distance in km: ', getDistanceFromLatLonInKm(chatRoom.latitude, chatRoom.longitude, lat, lng));
-  //   console.log('chatRoom.latitude: ', chatRoom.latitude);
-  //   console.log('lat: ', this.lat);
-  //   if (isCloseEnough(chatRoom.latitude, chatRoom.longitude, this.lat, this.lng, 1000000)) {
-  //     // 0.1 km is about 330 feet
-  //     console.log('Close Enough: True');
-  //     chatRoomsList.append(chatRoom);
-  //     // setChatRooms([...chatRooms, chatRoom]);
-  //   }
-  //   // console.log(chatRoomsList);
-  //   setChatRooms(chatRoomsList);
-  // });
-  // return -1;
-  // setUser(res.user);
-  // setLoading(false);
-  // }
-
-  // const latlng = geolocation();
-  // const lat = latlng.lat;
-  // const lng = latlng.lng;
 
   const createRoom = async (name, lat, lng) => {
     setIsOpen(false);
@@ -230,10 +103,6 @@ export const Home = () => {
     setIsOpen(false);
     setChatRooms([...chatRooms]);
   };
-  // const { chatRooms } = await api.get('/chat_rooms');
-  // import { Wrapper, Status } from "@googlemaps/react-wrapper";
-  // const render = (status: Status) => {
-  //   return <h1>{status}</h1>;
 
   return (
     <div className="container">

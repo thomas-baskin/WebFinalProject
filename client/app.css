@@ -24,16 +24,12 @@
 
 .chatbar {
   display: flex;
-  /* position: absolute; */
   bottom: 0;
   left: 16px;
   border: 2px solid rgb(145, 103, 103);
   padding-left: 3px;
   border-radius: 4px;
   width: 100%;
-  /* background-color: solid rgb(203, 226, 237); */
-  /* background: transparent; */
-  /* border: 1px solid rgb(220, 244, 255); */
 }
 
 .message-content {
