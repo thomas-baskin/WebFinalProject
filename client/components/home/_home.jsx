@@ -130,15 +130,6 @@ export const Home = () => {
         </Routes>
       </div>
       {isOpen ? <NewRoomModal createRoom={createRoom} closeModal={closeModal} /> : null}
-      {/* <script
-        async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEJyBEm51-6F136X-7LHt3P6mzloabuTQ&callback=initMap"
-      ></script>
-      <div id="map"></div> */}
-
-      {/* <GoogleApiWrapper></GoogleApiWrapper> */}
-      {/* <MapComp></MapComp> */}
-      {/* <MapWrapper></MapWrapper> */}
     </div>
   );
 };
