@@ -8,14 +8,6 @@ export const NewRoomModal = ({ createRoom, closeModal }) => {
   const [lat, setLat] = useState([]);
   const [lng, setLng] = useState([]);
 
-  //console.log('closemOdal: ', closeModal);
-
-  // const [show, setShow] = useState(false);
-  // const handleClose = () => setShow(false);
-  // const [found, setFound] = useState(false);
-  // setLat(0); // Default
-  // setLng(0); //Default
-
   useEffect(async () => {
     geolocation();
   }, []);
@@ -31,10 +23,6 @@ export const NewRoomModal = ({ createRoom, closeModal }) => {
       //return { lat, lng };
     });
   }
-  // const [lat, setLat] = useState('');
-  // const [lng, setLng] = useState('');
-  // console.log(lng);
-  // console.log(lat);
 
   return (
     <>
