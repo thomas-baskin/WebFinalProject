@@ -6,8 +6,7 @@ import { Rooms } from './rooms';
 import { Room } from './room';
 import { ChatRoom } from '../chat_room/_chat_room';
 import { NewRoomModal } from './new_room_modal';
-import MapWrapper from '../chat_room/othermap';
-import logo from './../../../static/sky0.png';
+import logo from './../../../static/images/sky0.png';
 
 // Thank you StackOverflow
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
