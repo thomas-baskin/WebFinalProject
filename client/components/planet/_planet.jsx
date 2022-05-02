@@ -3,9 +3,9 @@ import mon1 from '../../../static/images/mon1.png';
 
 export const Planet = () => {
   return (
-    <div>
-      <canvas id="planet"></canvas>
-      <Monster img={mon1}></Monster>
+    <div id="planet_div">
+      <canvas id="planet_canvas"></canvas>
+      {/* <Monster img={mon1}></Monster> */}
     </div>
   );
 };
