@@ -13,12 +13,18 @@ import darksteak from '../../../static/images/icons/darksteak.png';
 export const Planet = () => {
   const ref = useRef();
   const [isDropping, setIsDropping] = useState(false);
-
+  const [user, setUser] = useState(null);
   // Get how much food the player account needs
 
   let eaten = 0;
 
-  useEffect(() => {
+
+  useEffect(async () => {
+    if (!user) {
+      const { user } = await api.get('/users/me');
+      setUser(user);
+    }
+    // const res = await api.get('/users/me');
     const canvas = ref.current;
     // canvas.requestFullscreen();
     // canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;

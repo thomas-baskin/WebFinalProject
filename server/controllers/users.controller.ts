@@ -15,6 +15,7 @@ import { JwtService } from 'server/providers/services/jwt.service';
 import { RefreshTokensService } from 'server/providers/services/refresh_tokens.service';
 import { RolesService } from 'server/providers/services/roles.service';
 import { UsersService } from 'server/providers/services/users.service';
+import { Monster } from 'server/entities/monster.entity';
 
 @Controller()
 export class UsersController {
@@ -46,6 +47,15 @@ export class UsersController {
     newUser.firstName = userPayload.firstName;
     newUser.lastName = userPayload.lastName;
     newUser.passwordHash = await bcrypt.hash(userPayload.password, 10);
+
+    newUser.monster = new Monster();
+    const minimumHunger = 10;
+    const maximumHunger = 30;
+    const hunger = Math.floor(Math.random() * (maximumHunger - minimumHunger + 1)) + minimumHunger;
+    newUser.monster.maxhunger = hunger;
+    const monster_list = ['mon1', 'mon2'];
+    newUser.monster.monsterId = monster_list[Math.floor(Math.random() * monster_list.length)];
+
     const [role] = await this.rolesService.findByKey(RoleKey.USER);
     const userRole = new UserRole();
     userRole.role = role;
