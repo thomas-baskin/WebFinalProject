@@ -41,6 +41,7 @@ export default class Seeds implements Seeder {
 
       const hunger = 20;
       adminUser.maxhunger = hunger;
+      adminUser.currhunger = 5;
       //const monster_list = ['mon1', 'mon2'];
       adminUser.monsterName = 'mon1'; //monster_list[Math.floor(Math.random() * monster_list.length)];
 

@@ -51,6 +51,7 @@ export class UsersController {
     const maximumHunger = 30;
     const hunger = Math.floor(Math.random() * (maximumHunger - minimumHunger + 1)) + minimumHunger;
     newUser.maxhunger = hunger;
+    newUser.currhunger = 5;
     const monster_list = ['mon1', 'mon2'];
     newUser.monsterName = monster_list[Math.floor(Math.random() * monster_list.length)];
 

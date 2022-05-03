@@ -39,6 +39,11 @@ export class AddUser1637028716848 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'currhunger',
+            type: 'int',
+            isNullable: false,
+          },
+          {
             name: 'monsterName',
             type: 'text',
             isNullable: false,

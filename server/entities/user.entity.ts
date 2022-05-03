@@ -23,6 +23,9 @@ export class User {
   maxhunger: number;
 
   @Column({ nullable: false })
+  currhunger: number;
+
+  @Column({ nullable: false })
   monsterName: string;
 
   @OneToMany(() => RefreshToken, (token) => token.user)
