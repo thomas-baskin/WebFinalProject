@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { ApiContext } from '../../utils/api_context';
 import { Button } from '../common/button';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { Rooms } from './rooms';
 import { Room } from './room';
 import { ChatRoom } from '../chat_room/_chat_room';

@@ -21,9 +21,10 @@
 
 #planet_canvas {
   width: 350px;
-  height: 600px;/*
-  text-align: center; */
+  height: 600px;
+  z-index: -1;
   background-color: #645e5e;
+  filter: sepia(40%);
   background: url("../static/images/sky0.png");
 }
 
@@ -40,6 +41,29 @@
   -moz-transform: translateX(-50%) translateY(-50%);
   -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+}
+
+.icobtnimg {
+  max-width: 100%;
+  max-height: 100%;
+  padding: 10px;
+}
+
+.icobtn {
+  max-width: 100%;
+  max-height: 100%;
+  /* border: #9e9e9e;
+  border-style: solid;
+  border-radius: 2px; */
+  /* filter: sepia(30%); */
+  /* background-color: #fcf8ec; */
+}
+
+button:disabled,
+button[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
 }
 
 .chatdiv {
@@ -199,6 +223,5 @@ input[type=text]:focus {
 .button-container button:nth-of-type(1):hover {
   background-color: lightgray;
 }
-
 
 
