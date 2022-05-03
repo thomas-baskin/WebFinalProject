@@ -7,10 +7,14 @@ import twowaymon3 from '../../../static/images/mon1/twowaymon3.png';
 import icoexercise64 from '../../../static/images/icons/icoexercise64.png';
 import icofood64 from '../../../static/images/icons/icofood64.png';
 import steak from '../../../static/images/icons/steak.png';
+import greensteak from '../../../static/images/icons/greensteak.png';
+import darksteak from '../../../static/images/icons/darksteak.png';
 
 export const Planet = () => {
   const ref = useRef();
   const [isDropping, setIsDropping] = useState(false);
+
+  // Get how much food the player account needs
 
   let eaten = 0;
 
@@ -27,7 +31,7 @@ export const Planet = () => {
     let maximumX = 280 - 30;
     let steakXpos = Math.floor(Math.random() * (maximumX - minimumX + 1)) + minimumX;
     const SCALED_STEAK_HEIGHT = 10;
-    const SCALED_STEAK_WIDTH = 20;
+    const SCALED_STEAK_WIDTH = 30;
     const STEAK_SCALE = 0.5;
 
     let SCALE = 2.5;
@@ -192,10 +196,10 @@ export const Planet = () => {
 
       drawFrame(CYCLE_LOOP[currentLoopIndex], currentDirection, positionX, positionY);
       dropSteak();
-      // if (isDropping === true) {
-      //   console.log('isDropping: ', isDropping);
-      ctx.drawImage(img2, steakXpos, steakYpos, SCALED_STEAK_WIDTH, SCALED_STEAK_HEIGHT);
-      // }
+      if (isDropping === true) {
+        // console.log('isDropping: ', isDropping);
+        ctx.drawImage(img2, steakXpos, steakYpos, SCALED_STEAK_WIDTH, SCALED_STEAK_HEIGHT);
+      }
       window.requestAnimationFrame(drawLoop);
     }
 
@@ -217,24 +221,25 @@ export const Planet = () => {
     // }
 
     runPlayerAnimation();
-    // runSteakAnimation();
-    // do something here with the canvas
-  }, []);
-  // const canvas = React.createElement('canvas', {}, 'My First React Code');
+  }, [isDropping]);
 
-  // var ctx = canvas.getContext('2d');
-
-  //set scale
   return (
-    <div id="planet_div">
-      <canvas id="planet_canvas" ref={ref}></canvas>
-      <button className="icobtn" onClick={() => setIsDropping(true)}>
-        <img className="icobtnimg" src={icofood64}></img>
-      </button>
-      <button className="icobtn">
-        <img className="icobtnimg" src={icoexercise64}></img>
-      </button>
-      {/* <Monster img={mon1}></Monster> */}
+    <div>
+      <div>
+        <img src={darksteak}></img>
+        <img src={steak}></img>
+        <img src={greensteak}></img>
+      </div>
+      <div id="planet_div">
+        <canvas id="planet_canvas" ref={ref}></canvas>
+        <button className="icobtn" onClick={() => setIsDropping(!isDropping)}>
+          <img className="icobtnimg" src={icofood64}></img>
+        </button>
+        <button className="icobtn" disabled={true}>
+          <img className="icobtnimg" src={icoexercise64}></img>
+        </button>
+        {/* <Monster img={mon1}></Monster> */}
+      </div>
     </div>
   );
 };
