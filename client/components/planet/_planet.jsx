@@ -3,6 +3,8 @@ import { useEffect, useRef } from 'react';
 import { useContext, useEffect, useState } from 'react';
 
 import React from 'react';
+import { ApiContext } from '../../utils/api_context';
+
 import twowaymon3 from '../../../static/images/mon1/twowaymon3.png';
 import icoexercise64 from '../../../static/images/icons/icoexercise64.png';
 import icofood64 from '../../../static/images/icons/icofood64.png';
@@ -14,10 +16,10 @@ export const Planet = () => {
   const ref = useRef();
   const [isDropping, setIsDropping] = useState(false);
   const [user, setUser] = useState(null);
+  const api = useContext(ApiContext);
   // Get how much food the player account needs
 
   let eaten = 0;
-
 
   useEffect(async () => {
     if (!user) {

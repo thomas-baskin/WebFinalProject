@@ -33,6 +33,16 @@ export class AddUser1637028716848 implements MigrationInterface {
             isNullable: false,
             isUnique: true,
           },
+          {
+            name: 'maxhunger',
+            type: 'int',
+            isNullable: false,
+          },
+          {
+            name: 'monsterName',
+            type: 'text',
+            isNullable: false,
+          },
         ],
       }),
     );

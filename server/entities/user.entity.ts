@@ -1,8 +1,6 @@
-import { onErrorResumeNext } from 'rxjs';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, OneToOne, JoinColumn } from 'typeorm';
 import { RefreshToken } from './refresh_token.entity';
 import { UserRole } from './user_role.entity';
-import { Monster } from './monster.entity';
 
 @Entity()
 export class User {
@@ -21,13 +19,15 @@ export class User {
   @Column({ nullable: false })
   passwordHash: string;
 
+  @Column({ nullable: false })
+  maxhunger: number;
+
+  @Column({ nullable: false })
+  monsterName: string;
+
   @OneToMany(() => RefreshToken, (token) => token.user)
   refreshTokens: RefreshToken[];
 
   @OneToMany(() => UserRole, (userRole) => userRole.user, { cascade: true })
   userRoles: UserRole[];
-
-  @OneToOne(() => Monster)
-  @JoinColumn()
-  monster: Monster;
 }

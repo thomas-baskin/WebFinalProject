@@ -38,6 +38,12 @@ export default class Seeds implements Seeder {
       adminUser.passwordHash = passwordHash;
       adminUser.firstName = 'Admin';
       adminUser.lastName = 'Site';
+
+      const hunger = 20;
+      adminUser.maxhunger = hunger;
+      //const monster_list = ['mon1', 'mon2'];
+      adminUser.monsterName = 'mon1'; //monster_list[Math.floor(Math.random() * monster_list.length)];
+
       const adminUserRole = new UserRole();
       adminUserRole.role = adminRole;
       adminUser.userRoles = [adminUserRole];
