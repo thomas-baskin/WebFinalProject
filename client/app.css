@@ -24,7 +24,7 @@
   height: 600px;
   z-index: -1;
   background-color: #645e5e;
-  filter: sepia(40%);
+  filter: sepia(30%);
   background: url("../static/images/sky0.png");
 }
 

@@ -1,22 +1,23 @@
-import { Monster } from './monster';
 import { useEffect, useRef } from 'react';
 import { useContext, useEffect, useState } from 'react';
 
 import React from 'react';
 import { ApiContext } from '../../utils/api_context';
 
-import twowaymon3 from '../../../static/images/mon1/twowaymon3.png';
 import icoexercise64 from '../../../static/images/icons/icoexercise64.png';
 import icofood64 from '../../../static/images/icons/icofood64.png';
 import steak from '../../../static/images/icons/steak.png';
 import greensteak from '../../../static/images/icons/greensteak.png';
 import darksteak from '../../../static/images/icons/darksteak.png';
+import twowaymon1 from '../../../static/images/mon1/twowaymon.png';
+import twowaymon2 from '../../../static/images/mon2/twowaymon.png';
 
 export const Planet = () => {
   const ref = useRef();
   const [isDropping, setIsDropping] = useState(false);
   const [user, setUser] = useState(null);
   const api = useContext(ApiContext);
+  const [monsterImport, setMonsterImport] = useState(null);
   // Get how much food the player account needs
 
   let eaten = 0;
@@ -25,6 +26,18 @@ export const Planet = () => {
     if (!user) {
       const { user } = await api.get('/users/me');
       setUser(user);
+      console.log(user);
+      monsterName = user.monsterName;
+      if (monsterName == 'mon1') {
+        setMonsterImport(twowaymon1);
+      } else if (monsterName == 'mon2') {
+        setMonsterImport(twowaymon2);
+      } else {
+        setMonsterImport(twowaymon1);
+      }
+      // Had issues with dynamically importing files so I'll download them all and only use one
+      // There isn't enough time to be picky.
+      // const monsterImport = await import(`../../../static/images/${monsterName}/twowaymon.png`).default;
     }
     // const res = await api.get('/users/me');
     const canvas = ref.current;
@@ -213,7 +226,7 @@ export const Planet = () => {
 
     //load the spritesheet and run the animation
     function runPlayerAnimation() {
-      img.src = twowaymon3;
+      img.src = monsterImport;
       img2.src = steak;
       // img2.style.visibility = isDropping;
       img.onload = function () {
@@ -243,7 +256,7 @@ export const Planet = () => {
         <button className="icobtn" onClick={() => setIsDropping(!isDropping)}>
           <img className="icobtnimg" src={icofood64}></img>
         </button>
-        <button className="icobtn" disabled={true}>
+        <button className="icobtn" title="Disabled" disabled={true}>
           <img className="icobtnimg" src={icoexercise64}></img>
         </button>
         {/* <Monster img={mon1}></Monster> */}
