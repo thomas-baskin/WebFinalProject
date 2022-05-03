@@ -12,20 +12,25 @@ export const Planet = () => {
   const ref = useRef();
   const [isDropping, setIsDropping] = useState(false);
 
+  let eaten = 0;
+
   useEffect(() => {
     const canvas = ref.current;
+    // canvas.requestFullscreen();
+    // canvas.requestPointerLock = canvas.requestPointerLock || canvas.mozRequestPointerLock;
+    // canvas.requestPointerLock();
     const ctx = canvas.getContext('2d');
 
     const STEAKDROPSPEED = 0.4;
     let steakYpos = 0;
-    let minimumX = 0;
-    let maximumX = 280;
+    let minimumX = 30;
+    let maximumX = 280 - 30;
     let steakXpos = Math.floor(Math.random() * (maximumX - minimumX + 1)) + minimumX;
     const SCALED_STEAK_HEIGHT = 10;
     const SCALED_STEAK_WIDTH = 20;
     const STEAK_SCALE = 0.5;
 
-    let SCALE = 3;
+    let SCALE = 2.5;
     //define width and height based on source image
     const WIDTH = 8;
     const HEIGHT = 12;
@@ -39,7 +44,7 @@ export const Planet = () => {
     //Determines framerate of animation, lower numbers being faster
     const FRAME_LIMIT = 8;
     //Determines speed at which character moves
-    let MOVEMENT_SPEED = 0.25;
+    let MOVEMENT_SPEED = 0.4;
 
     ctx.imageSmoothingEnabled = false;
     //choose initial sprite
@@ -48,7 +53,7 @@ export const Planet = () => {
     let frameCount = 0;
     //coordinates of character, based on top left corner of sprite
     let positionX = 0;
-    let positionY = 112;
+    let positionY = 117;
     //coordinates of mouse
     let mouseX;
     let mouseY;
@@ -123,10 +128,22 @@ export const Planet = () => {
       angleMath();
 
       // at steak
-      if (Math.abs(positionX - steakXpos) < 15 && steakYpos >= 125) {
-        // console.log('Trigger');
-        steakYpos = 0;
-        // setIsDropping(false);
+      if (currentDirection == WEST) {
+        if (Math.abs(positionX - steakXpos) < 25 && steakYpos >= 125) {
+          // console.log('Trigger');
+          steakYpos = 0;
+          steakXpos = Math.floor(Math.random() * (maximumX - minimumX + 1)) + minimumX;
+          eaten = eaten + 1;
+          console.log(eaten);
+          //setInDropping(false);
+        }
+      } else {
+        if (Math.abs(positionX + 25 - steakXpos) < 25 && steakYpos >= 125) {
+          steakYpos = 0;
+          steakXpos = Math.floor(Math.random() * (maximumX - minimumX + 1)) + minimumX;
+          eaten = eaten + 1;
+          console.log(eaten);
+        }
       }
     }
 
