@@ -19,6 +19,8 @@ export const Planet = () => {
   const api = useContext(ApiContext);
   const [monsterImport, setMonsterImport] = useState(null);
   // Get how much food the player account needs
+  const [hunger, setHunger] = useState(null);
+  const [maxhunger, setMaxhunger] = useState(null);
 
   let eaten = 0;
 
@@ -27,6 +29,8 @@ export const Planet = () => {
       const { user } = await api.get('/users/me');
       setUser(user);
       console.log(user);
+      setHunger(user.currhunger);
+      setMaxhunger(user.maxhunger);
       monsterName = user.monsterName;
       if (monsterName == 'mon1') {
         setMonsterImport(twowaymon1);
@@ -155,19 +159,21 @@ export const Planet = () => {
       // at steak
       if (currentDirection == WEST) {
         if (Math.abs(positionX - steakXpos) < 25 && steakYpos >= 125) {
-          // console.log('Trigger');
           steakYpos = 0;
           steakXpos = Math.floor(Math.random() * (maximumX - minimumX + 1)) + minimumX;
-          eaten = eaten + 1;
-          console.log(eaten);
-          //setInDropping(false);
+          if (isDropping === true) {
+            setHunger(hunger - 1);
+            setIsDropping(false);
+          }
         }
       } else {
         if (Math.abs(positionX + 25 - steakXpos) < 25 && steakYpos >= 125) {
           steakYpos = 0;
           steakXpos = Math.floor(Math.random() * (maximumX - minimumX + 1)) + minimumX;
-          eaten = eaten + 1;
-          console.log(eaten);
+          if (isDropping === true) {
+            setHunger(hunger - 1);
+            setIsDropping(false);
+          }
         }
       }
     }
@@ -216,9 +222,8 @@ export const Planet = () => {
       }
 
       drawFrame(CYCLE_LOOP[currentLoopIndex], currentDirection, positionX, positionY);
-      dropSteak();
       if (isDropping === true) {
-        // console.log('isDropping: ', isDropping);
+        dropSteak();
         ctx.drawImage(img2, steakXpos, steakYpos, SCALED_STEAK_WIDTH, SCALED_STEAK_HEIGHT);
       }
       window.requestAnimationFrame(drawLoop);
@@ -228,39 +233,55 @@ export const Planet = () => {
     function runPlayerAnimation() {
       img.src = monsterImport;
       img2.src = steak;
-      // img2.style.visibility = isDropping;
       img.onload = function () {
         window.requestAnimationFrame(drawLoop);
       };
     }
 
-    // function runSteakAnimation() {
-    //   img.src = steak;
-    //   img.onload = function () {
-    //     window.requestAnimationFrame(drawLoop);
-    //   };
-    // }
-
     runPlayerAnimation();
   }, [isDropping]);
 
+  const renderSteak = () => {
+    let td = [];
+    let counter = 1;
+    for (let i = 1; i <= hunger; i++) {
+      td.push(<img src={steak} alt="blug" title={'Red is bad! ' + i} className="hunger"></img>);
+      counter += 1;
+    }
+    for (let j = counter; j <= maxhunger; j++) {
+      td.push(<img src={darksteak} alt="blug" title={'Black is good! ' + j} className="darkhunger"></img>);
+    }
+    return td;
+  };
+
+  useEffect(async () => {
+    renderSteak();
+  }, [hunger]);
+
   return (
     <div>
+      <div id="hungerBar">{renderSteak()}</div>
       <div>
-        <img src={darksteak}></img>
-        <img src={steak}></img>
-        <img src={greensteak}></img>
+        {/* <img src={darksteak}></img>
+        <img src={steak}></img> */}
+        {/* <img src={greensteak} title="Three Bad Steaks =/= Good"></img> */}
       </div>
       <div id="planet_div">
         <canvas id="planet_canvas" ref={ref}></canvas>
-        <button className="icobtn" onClick={() => setIsDropping(!isDropping)}>
-          <img className="icobtnimg" src={icofood64}></img>
-        </button>
-        <button className="icobtn" title="Disabled" disabled={true}>
-          <img className="icobtnimg" src={icoexercise64}></img>
-        </button>
-        {/* <Monster img={mon1}></Monster> */}
+        <div className="buttonDiv">
+          <button className="icobtn" onClick={() => setIsDropping(!isDropping)} disabled={isDropping}>
+            <img className="icobtnimg" src={icofood64}></img>
+          </button>
+          <button className="icobtn" title="Disabled" disabled={true}>
+            <img className="icobtnimg" src={icoexercise64}></img>
+          </button>
+          {/* <Monster img={mon1}></Monster> */}
+        </div>
       </div>
     </div>
   );
+};
+
+export const Steaks = ({ children }) => {
+  return <div className="side-bar">{children}</div>;
 };
