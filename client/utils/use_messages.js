@@ -44,8 +44,16 @@ export const useMessages = (chatRoom) => {
     socket.emit('message', {
       contents,
       userName: `${user.firstName} ${user.lastName}`,
+      // monster: `${user.monster}`,
     });
   };
+
+  // const sendMonster = (contents, user) => {
+  //   socket.emit('monster', {
+  //     contents,
+  //     userName: `${user.firstName} ${user.lastName}`,
+  //   });
+  // }
 
   return [messages, sendMessage];
 };
