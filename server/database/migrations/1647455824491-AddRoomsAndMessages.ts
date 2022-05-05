@@ -59,6 +59,10 @@ export class AddRoomsAndMessages1647455824491 implements MigrationInterface {
             name: 'userName',
             type: 'text',
           },
+          {
+            name: 'monsterName',
+            type: 'text',
+          },
         ],
       }),
     );

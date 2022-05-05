@@ -28,6 +28,12 @@
   background: url("../static/images/sky0.png");
 }
 
+.sprite {
+  display: inline;
+  width: 16px;
+  height: 24px;
+}
+
 #home_canvas {
   width: 350px;
   height: 100vh;
@@ -130,6 +136,8 @@ input[type=text]:focus {
 }
 
 .user-name {
+  display: inline;
+  padding-right: 5px;
   padding-left: 5px;
   font-size: medium;
   border: 1px blue;

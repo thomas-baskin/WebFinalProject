@@ -14,6 +14,8 @@ export const ChatRoom = () => {
   const api = useContext(ApiContext);
   const { id } = useParams();
   const [messages, sendMessage] = useMessages(chatRoom);
+
+  const [monsterImport, setMonsterImport] = useState(null);
   useEffect(async () => {
     setLoading(true);
     if (!user) {
@@ -21,6 +23,11 @@ export const ChatRoom = () => {
       setUser(user);
     }
     const { chatRoom } = await api.get(`/chat_rooms/${id}`);
+
+    // else {
+    //   setMonsterImport(twowaymon1);
+    // }
+
     setChatRoom(chatRoom);
     setLoading(false);
   }, [id]);
@@ -45,7 +52,10 @@ export const ChatRoom = () => {
     <div className="chat-container">
       <div className="chatdiv">
         {messages.map((message) => (
-          <Message key={message.id} message={message} />
+          <div>
+            <img src={monsterImport}></img>
+            <Message key={message.id} message={message} />
+          </div>
         ))}
         <input className="chatbar" type="text" value={contents} onChange={(e) => setContents(e.target.value)} />
         <Button onClick={() => sendAndClear(contents, user)}>Send</Button>

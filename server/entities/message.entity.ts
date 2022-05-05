@@ -18,6 +18,9 @@ export class Message {
   @Column()
   userName: string;
 
+  @Column()
+  monsterName: string;
+
   @ManyToOne(() => ChatRoom, (chatRoom) => chatRoom.messages)
   chatRoom: ChatRoom;
 }

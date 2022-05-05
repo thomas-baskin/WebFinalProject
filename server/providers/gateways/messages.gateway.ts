@@ -21,6 +21,7 @@ class ChatMessagePayload {
   contents: string;
   userName: string;
   userId: number;
+  monsterName: string;
 }
 
 @WebSocketGateway()
@@ -60,6 +61,7 @@ export class MessagesGateway implements OnGatewayConnection, OnGatewayDisconnect
     message.contents = payload.contents;
     message.userName = payload.userName;
     message.userId = jwtBody.userId;
+    message.monsterName = payload.monsterName;
     message.chatRoomId = parseInt(client.handshake.query.chatRoomId as unknown as string, 10);
     message = await this.messagesService.create(message);
     this.server.to(`${message.chatRoomId}`).emit('message', message);

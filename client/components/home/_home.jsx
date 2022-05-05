@@ -6,7 +6,6 @@ import { Rooms } from './rooms';
 import { Room } from './room';
 import { ChatRoom } from '../chat_room/_chat_room';
 import { NewRoomModal } from './new_room_modal';
-import logo from './../../../static/images/sky0.png';
 
 import { useEffect, useRef } from 'react';
 import { useContext, useEffect, useState } from 'react';
@@ -17,6 +16,7 @@ import { ApiContext } from '../../utils/api_context';
 import steak from '../../../static/images/icons/steak.png';
 import twowaymon1 from '../../../static/images/mon1/twowaymon.png';
 import twowaymon2 from '../../../static/images/mon2/twowaymon.png';
+import twowaymon3 from '../../../static/images/mon3/twowaymon.png';
 import { Button } from '../common/button';
 import { Link } from 'react-router-dom';
 
@@ -81,8 +81,8 @@ export const Home = () => {
         setMonsterImport(twowaymon1);
       } else if (monsterName == 'mon2') {
         setMonsterImport(twowaymon2);
-      } else {
-        setMonsterImport(twowaymon1);
+      } else if (monsterName == 'mon3') {
+        setMonsterImport(twowaymon3);
       }
       // Had issues with dynamically importing files so I'll download them all and only use one
       // There isn't enough time to be picky.
