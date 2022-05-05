@@ -11,6 +11,8 @@ import greensteak from '../../../static/images/icons/greensteak.png';
 import darksteak from '../../../static/images/icons/darksteak.png';
 import twowaymon1 from '../../../static/images/mon1/twowaymon.png';
 import twowaymon2 from '../../../static/images/mon2/twowaymon.png';
+import { Button } from '../common/button';
+import { Link } from 'react-router-dom';
 
 export const Planet = () => {
   const ref = useRef();
@@ -277,6 +279,9 @@ export const Planet = () => {
           </button>
           {/* <Monster img={mon1}></Monster> */}
         </div>
+      </div>
+      <div className="chatroombtn">
+        <Button>{<Link to="/home">Go To Chatrooms</Link>}</Button>
       </div>
     </div>
   );

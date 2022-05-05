@@ -104,6 +104,12 @@ input[type=text]:focus {
   background-color: rgb(247, 253, 255);
 }
 
+.chatroombtn {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
 .user-name {
   padding-left: 5px;
   font-size: medium;

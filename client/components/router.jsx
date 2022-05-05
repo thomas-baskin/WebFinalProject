@@ -12,14 +12,14 @@ export const Router = () => {
 
   return (
     <Routes>
+      <Route path="planet" element={authToken ? <Planet /> : <Navigate replace to="signin" />} />
       <Route
         path="/*"
-        element={authToken ? <Planet /> : <Navigate replace to="signin" />} // no token means not logged in
+        element={authToken ? <Home /> : <Navigate replace to="signin" />} // no token means not logged in
       />
       <Route path="admin" element={<Admin />} />
       <Route path="signin" element={<SignIn />} />
       <Route path="signup" element={<SignUp />} />
-      <Route path="home/*" element={<Home />} />
     </Routes>
   );
 };
