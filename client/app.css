@@ -28,6 +28,25 @@
   background: url("../static/images/sky0.png");
 }
 
+#home_canvas {
+  width: 350px;
+  height: 100vh;
+  z-index: -1;
+  background-color: #645e5e;
+  filter: sepia(30%);
+  background: url("../static/images/sky0.png");
+}
+
+.home_canvas_div{
+  position: absolute;
+  right: 0%;
+  /* top: 50%;
+  left: 50%; */
+  /* -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%); */
+}
+
 #planet_div {
   position: absolute;
   top: 50%;

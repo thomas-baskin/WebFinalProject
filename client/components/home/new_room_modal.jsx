@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Button } from '../common/button';
-import { Home } from './_home';
 import { useContext, useEffect, useState } from 'react';
 
 export const NewRoomModal = ({ createRoom, closeModal }) => {

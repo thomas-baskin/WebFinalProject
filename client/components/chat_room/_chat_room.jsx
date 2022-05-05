@@ -5,7 +5,6 @@ import { ApiContext } from '../../utils/api_context';
 import { Button } from '../common/button';
 import { useMessages } from '../../utils/use_messages';
 import { Message } from './message';
-import { getEnabledCategories } from 'trace_events';
 
 export const ChatRoom = () => {
   const [chatRoom, setChatRoom] = useState(null);
